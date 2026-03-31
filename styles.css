@@ -158,6 +158,13 @@ body {
   font-size: clamp(56px, 9vw, 140px);
 }
 
+.experience-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
 .experience-title {
   font-family: "Italiana", serif;
   font-weight: lighter;
@@ -169,33 +176,46 @@ body {
 }
 
 .hover-reveal {
-  width: min(80ch, 100%);
+  width: 100%;
+  --hover-reveal-gutter-idle: 12.5vw; /* 1/5 of the screen */
+  --hover-reveal-gutter-open: 12.5vw; /* 1/8 of the screen */
+}
+
+.hover-reveal__box {
+  width: min(
+    80ch,
+    calc(100% - (2 * var(--hover-reveal-gutter-idle)))
+  );
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
+  position: relative;
+  padding: 14px 18px;
+  color: #ebe0c9;
+  transition: width 280ms ease;
 }
 
 .hover-reveal__trigger {
   appearance: none;
   background: transparent;
   border: 0;
-  padding: 14px 18px;
+  padding: 0;
   cursor: pointer;
-  color: #ebe0c9;
+  color: inherit;
   font-family: "Crimson Text", serif;
   font-weight: 700;
   font-size: clamp(11pt, 2.6vw, 20pt);
-  text-align: center;
-  position: relative;
+  text-align: left;
+  width: 100%;
+  transition: font-size 280ms ease;
 }
 
-.hover-reveal__trigger::before,
-.hover-reveal__trigger::after {
+.hover-reveal__box::before {
   content: "";
   position: absolute;
-  width: 144px;
-  height: 14px;
+  width: 28px;
+  height: 18px;
   border-color: currentColor;
   transition:
     transform 280ms ease,
@@ -204,30 +224,21 @@ body {
 }
 
 /* upper-left corner */
-.hover-reveal__trigger::before {
+.hover-reveal__box::before {
   left: 0;
   top: 0;
   border-left: 2px solid currentColor;
   border-top: 2px solid currentColor;
-  transform: translate(5px, 10px);
-}
-
-/* lower-right corner */
-.hover-reveal__trigger::after {
-  right: 0;
-  bottom: 0;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: translate(-5px, -5px);
+  transform: translate(8px, 6px);
 }
 
 .hover-reveal__body {
-  color: #ebe0c9;
+  color: inherit;
   font-family: "Crimson Text", serif;
   font-weight: 400;
   font-size: 14pt;
   line-height: 1.5;
-  text-align: center;
+  text-align: left;
   margin: 0;
   max-height: 0;
   opacity: 0;
@@ -239,6 +250,11 @@ body {
     transform 200ms ease;
 }
 
+.hover-reveal:hover .hover-reveal__box,
+.hover-reveal:focus-within .hover-reveal__box {
+  width: calc(100% - (2 * var(--hover-reveal-gutter-open)));
+}
+
 .hover-reveal:hover .hover-reveal__body,
 .hover-reveal:focus-within .hover-reveal__body {
   max-height: 240px;
@@ -246,23 +262,22 @@ body {
   transform: translateY(0);
 }
 
-.hover-reveal:hover .hover-reveal__trigger::before,
-.hover-reveal:focus-within .hover-reveal__trigger::before {
-  width: 26px;
-  height: 26px;
-  transform: translate(-12px, -7px);
+.hover-reveal:hover .hover-reveal__trigger,
+.hover-reveal:focus-within .hover-reveal__trigger {
+  font-size: clamp(11pt, 2.6vw, 14pt);
 }
 
-.hover-reveal:hover .hover-reveal__trigger::after,
-.hover-reveal:focus-within .hover-reveal__trigger::after {
-  width: 26px;
-  height: 26px;
-  transform: translate(12px, 7px);
+.hover-reveal:hover .hover-reveal__box::before,
+.hover-reveal:focus-within .hover-reveal__box::before {
+  width: 44px;
+  height: 28px;
+  transform: translate(2px, 2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hover-reveal__trigger::before,
-  .hover-reveal__trigger::after,
+  .hover-reveal__box,
+  .hover-reveal__box::before,
+  .hover-reveal__trigger,
   .hover-reveal__body {
     transition: none;
   }
