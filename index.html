@@ -1,1 +1,193 @@
-Hello World
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pepijn Lampe</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #071522;
+        margin: 0;
+      }
+      .section {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .section--hero {
+        background: #071522;
+      }
+      .title {
+        font-family: "Italiana", serif;
+        font-size: 120pt;
+        font-weight: lighter;
+        color: #ffffff;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .name-line {
+        display: block;
+      }
+      .subtitle {
+        margin-top: 0.25em;
+        font-size: 0.25em;
+        color: #837a90;
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 0.1em;
+        transform: translate(6em, 0.5em); /* increase/decrease this */
+      }
+
+      .section--about {
+        background: linear-gradient(to bottom, #174327 0%, #355e3b 9%, #355e3b 100%);
+        --about-bg-image: url("source/background_picture.jpg");
+        color: #ffffff;
+        padding: 6vh 8vw;
+        box-sizing: border-box;
+        place-items: start center;
+        position: relative;
+        overflow: hidden;
+      }
+      .section--about::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--about-bg-image, none);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.05;
+        mix-blend-mode: hard-light;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .section--about > * {
+        position: relative;
+        z-index: 1;
+      }
+      .about-wrap {
+        width: min(70ch, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 4vh;
+        font-size: clamp(56px, 9vw, 140px);
+      }
+      .about-title {
+        font-family: "Italiana", serif;
+        font-weight: lighter;
+        font-size: 1em;
+        color: #EBE0C9;
+        line-height: 1;
+        text-align: center;
+        margin: 0;
+      }
+      .about-body {
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 0.2em;
+        color: #EBE0C9;
+        line-height: 1.5;
+        text-align: center;
+        white-space: normal;
+        margin: 0;
+      }
+      .about-photo {
+        width: 45vw;
+        max-width: 560px;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        transform: translate(0, 0.5em);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="section section--hero" aria-label="Home">
+      <main id="title" class="title hero" aria-label="Main title">
+        <span class="name-line">pepijn lampe.</span>
+        <span class="subtitle">mechanical storyteller.</span>
+      </main>
+    </section>
+
+    <section class="section section--about" aria-label="About">
+      <div class="about-wrap">
+        <h2 class="about-title">over.</h2>
+        <p class="about-body">
+          Ik ben erachter gekomen wat ik wil doen in mijn leven: verhalen
+          vertellen. <br />Nu ben ik geen schrijver, maar een creatieve vormgever
+          vanuit techniek, dans en toneel. Ik wil graag betrokken te zijn bij het
+          creatieve proces, waar de termen interactie, avontuur, optimisme en
+          ‘de ander’ centraal staat.
+          <br /><br />
+          Ik wil mensen verwonderen en het kind in onszelf aanwakkeren. Ik zal
+          mensen op een optimistische en magische avontuur willen laten gaan waar
+          ze meer naar de ander om én opkijken.
+        </p>
+        <img
+          class="about-photo"
+          src="source/pasfoto_pep.jpg"
+          alt="Pasfoto Pepijn Lampe"
+        />
+      </div>
+    </section>
+    <script>
+      (function () {
+        const el = document.getElementById("title");
+        if (!el) return;
+
+        const BASE_PX = 160; // ~120pt at 96dpi; used as starting point
+        const TARGET_VW = 0.5; // aim for 50% viewport width
+        const MIN_VW = 0.25;
+        const MAX_VW = 0.75;
+
+        function clamp(n, min, max) {
+          return Math.max(min, Math.min(max, n));
+        }
+
+        function fit() {
+          const vw = window.innerWidth;
+          const minW = vw * MIN_VW;
+          const maxW = vw * MAX_VW;
+          const targetW = clamp(vw * TARGET_VW, minW, maxW);
+
+          el.style.fontSize = BASE_PX + "px";
+          const w = el.getBoundingClientRect().width || 1;
+          const scale = targetW / w;
+          el.style.fontSize = Math.max(1, BASE_PX * scale) + "px";
+        }
+
+        let raf = 0;
+        function scheduleFit() {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(fit);
+        }
+
+        window.addEventListener("resize", scheduleFit, { passive: true });
+        scheduleFit();
+      })();
+    </script>
+  </body>
+</html>
