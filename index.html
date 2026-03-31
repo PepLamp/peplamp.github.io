@@ -12,115 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-      }
-      body {
-        background: #071522;
-        margin: 0;
-      }
-      .section {
-        min-height: 100vh;
-        width: 100%;
-        display: grid;
-        place-items: center;
-      }
-      .section--hero {
-        background: #071522;
-      }
-      .title {
-        font-family: "Italiana", serif;
-        font-size: 120pt;
-        font-weight: lighter;
-        color: #ffffff;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-      }
-      .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .name-line {
-        display: block;
-      }
-      .subtitle {
-        margin-top: 0.25em;
-        font-size: 0.25em;
-        color: #837a90;
-        font-family: "Crimson Text", serif;
-        font-weight: 400;
-        font-style: normal;
-        letter-spacing: 0.1em;
-        transform: translate(6em, 0.5em); /* increase/decrease this */
-      }
-
-      .section--about {
-        background: linear-gradient(to bottom, #174327 0%, #355e3b 9%, #355e3b 100%);
-        --about-bg-image: url("source/background_picture.jpg");
-        color: #ffffff;
-        padding: 6vh 8vw;
-        box-sizing: border-box;
-        place-items: start center;
-        position: relative;
-        overflow: hidden;
-      }
-      .section--about::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: var(--about-bg-image, none);
-        background-size: cover;
-        background-position: center;
-        opacity: 0.05;
-        mix-blend-mode: hard-light;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .section--about > * {
-        position: relative;
-        z-index: 1;
-      }
-      .about-wrap {
-        width: min(70ch, 100%);
-        display: flex;
-        flex-direction: column;
-        gap: 4vh;
-        font-size: clamp(56px, 9vw, 140px);
-      }
-      .about-title {
-        font-family: "Italiana", serif;
-        font-weight: lighter;
-        font-size: 1em;
-        color: #EBE0C9;
-        line-height: 1;
-        text-align: center;
-        margin: 0;
-      }
-      .about-body {
-        font-family: "Crimson Text", serif;
-        font-weight: 400;
-        font-style: normal;
-        font-size: clamp(7pt, 0.2em, 100vw);
-        color: #EBE0C9;
-        line-height: 1.5;
-        text-align: center;
-        white-space: normal;
-        margin: 0;
-      }
-      .about-photo {
-        width: min(400px, 90vw);
-        aspect-ratio: 3 / 2;
-        object-fit: cover;
-        margin: 0 auto;
-        display: block;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <section class="section section--hero" aria-label="Home">
@@ -130,13 +22,12 @@
       </main>
     </section>
 
-    <section class="section section--about" aria-label="About">
+    <section class="section section--about" aria-label="over">
       <div class="about-wrap">
-        <p class="about-body"> <br/> </p>
         <h2 class="about-title">over.</h2>
         <p class="about-body">
-          Ik ben erachter gekomen wat ik wil doen in mijn leven: verhalen
-          vertellen. <br />Nu ben ik geen schrijver, maar een creatieve vormgever
+          Ik ben erachter gekomen wat ik wil doen in mijn leven: <strong> verhalen
+          vertellen</strong>. <br />Nu ben ik geen schrijver, maar een creatieve vormgever
           vanuit techniek, dans en toneel. Ik wil graag betrokken te zijn bij het
           creatieve proces, waar de termen interactie, avontuur, optimisme en
           ‘de ander’ centraal staat.
@@ -145,13 +36,27 @@
           mensen op een optimistische en magische avontuur willen laten gaan waar
           ze meer naar de ander om én opkijken.
           <br /><br />
-          <br /><br />
         </p>
         <img
           class="about-photo"
           src="source/pasfoto_pep.jpg"
           alt="Pasfoto Pepijn Lampe"
         />
+      </div>
+    </section>
+
+    <section class="section section--experience" aria-label="ervaring">
+      <div class="experience-wrap">
+        <h2 class="about-title">ervaring.</h2>
+        <div class="hover-reveal" aria-label="Experience item">
+          <button class="hover-reveal__trigger" type="button">
+            Student - Interactive Perfomance Design (HKU)
+          </button>
+          <p class="hover-reveal__body">
+            In 2025 ben ik begonnen aan een kunststudie waarin performance en
+            design word samengevormd in een interactieve installatie.
+          </p>
+        </div>
       </div>
     </section>
     <script>
