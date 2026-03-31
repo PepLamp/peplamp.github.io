@@ -105,7 +105,7 @@
         font-family: "Crimson Text", serif;
         font-weight: 400;
         font-style: normal;
-        font-size: 0.2em;
+        font-size: clamp(7pt, 0.2em, 100vw);
         color: #EBE0C9;
         line-height: 1.5;
         text-align: center;
@@ -113,14 +113,12 @@
         margin: 0;
       }
       .about-photo {
-        width: 45vw;
-        max-width: 560px;
+        width: min(400px, 90vw);
         aspect-ratio: 3 / 2;
         object-fit: cover;
         margin: 0 auto;
         display: block;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        transform: translate(0, 0.5em);
       }
     </style>
   </head>
@@ -134,6 +132,7 @@
 
     <section class="section section--about" aria-label="About">
       <div class="about-wrap">
+        <p class="about-body"> <br/> </p>
         <h2 class="about-title">over.</h2>
         <p class="about-body">
           Ik ben erachter gekomen wat ik wil doen in mijn leven: verhalen
@@ -145,6 +144,8 @@
           Ik wil mensen verwonderen en het kind in onszelf aanwakkeren. Ik zal
           mensen op een optimistische en magische avontuur willen laten gaan waar
           ze meer naar de ander om én opkijken.
+          <br /><br />
+          <br /><br />
         </p>
         <img
           class="about-photo"
