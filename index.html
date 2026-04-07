@@ -1,130 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pepijn Lampe</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Italiana&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>peplamp</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <section class="section section--hero" aria-label="Home">
-      <main id="title" class="title hero" aria-label="Main title">
-        <span class="name-line">pepijn lampe.</span>
-        <span class="subtitle">mechanical storyteller.</span>
-      </main>
-    </section>
-
-    <section class="section section--about" aria-label="over">
-      <div class="about-wrap">
-        <h2 class="about-title">over.</h2>
-        <p class="about-body">
-          Ik ben erachter gekomen wat ik wil doen in mijn leven: <strong> verhalen
-          vertellen</strong>. <br />Nu ben ik geen schrijver, maar een creatieve vormgever
-          vanuit techniek, dans en toneel. Ik wil graag betrokken te zijn bij het
-          creatieve proces, waar de termen interactie, avontuur, optimisme en
-          ‘de ander’ centraal staat.
-          <br /><br />
-          Ik wil mensen verwonderen en het kind in onszelf aanwakkeren. Ik zal
-          mensen op een optimistische en magische avontuur willen laten gaan waar
-          ze meer naar de ander om én opkijken.
-          <br /><br />
-        </p>
-        <img
-          class="about-photo"
-          src="source/pasfoto_pep.jpg"
-          alt="Pasfoto Pepijn Lampe"
-        />
-      </div>
-    </section>
-
-    <section class="section section--experience" aria-label="ervaring">
-      <div class="experience-wrap">
-        <h2 class="about-title">ervaring.</h2>
-        <div class="experience-list" aria-label="Experience items">
-          <div class="hover-reveal" aria-label="Experience item">
-            <div class="hover-reveal__box">
-              <button class="hover-reveal__trigger" type="button">
-                Student - Interactive Perfomance Design (HKU)
-              </button>
-              <p class="hover-reveal__body">
-                In 2025 ben ik begonnen aan een kunststudie waarin performance en
-                design word samengevormd in een interactieve installatie.
-              </p>
-            </div>
-          </div>
-          <div class="hover-reveal" aria-label="Experience item">
-            <div class="hover-reveal__box">
-              <button class="hover-reveal__trigger" type="button">
-                Lead Composer - Muziektheatercollectief de Makers
-              </button>
-              <p class="hover-reveal__body">
-                Met een groep vrienden hebben we een collectief opgericht om
-                verder te werken aan onze eigen projecten en producties. In dit
-                collectief mocht ik meewerken aan het co-schrijven van liedjes en
-                het componeren van orkestrale arrangementen.
-              </p>
-            </div>
-          </div>
-          <div class="hover-reveal" aria-label="Experience item">
-            <div class="hover-reveal__box">
-              <button class="hover-reveal__trigger" type="button">
-                Student - BSc Creative Technology (VU-UT)
-              </button>
-              <p class="hover-reveal__body">
-                In 2023 ben ik begonnen aan een wetenschappelijke bachelor
-                Creative Technology in Amsterdam. Deze bachelor combineert
-                Computer Science, Electrical Engineering en Industrial Design in
-                één en richt zich op het snel prototypen van technische producten
-                en oplossingen om de beste output voor een probleem te verkennen.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
-      (function () {
-        const el = document.getElementById("title");
-        if (!el) return;
-
-        const BASE_PX = 160; // ~120pt at 96dpi; used as starting point
-        const TARGET_VW = 0.5; // aim for 50% viewport width
-        const MIN_VW = 0.25;
-        const MAX_VW = 0.75;
-
-        function clamp(n, min, max) {
-          return Math.max(min, Math.min(max, n));
-        }
-
-        function fit() {
-          const vw = window.innerWidth;
-          const minW = vw * MIN_VW;
-          const maxW = vw * MAX_VW;
-          const targetW = clamp(vw * TARGET_VW, minW, maxW);
-
-          el.style.fontSize = BASE_PX + "px";
-          const w = el.getBoundingClientRect().width || 1;
-          const scale = targetW / w;
-          el.style.fontSize = Math.max(1, BASE_PX * scale) + "px";
-        }
-
-        let raf = 0;
-        function scheduleFit() {
-          cancelAnimationFrame(raf);
-          raf = requestAnimationFrame(fit);
-        }
-
-        window.addEventListener("resize", scheduleFit, { passive: true });
-        scheduleFit();
-      })();
-    </script>
+    <main class="hero" aria-label="Homepage"></main>
+    <div class="scroll-tint" aria-hidden="true"></div>
+    <script src="./script.js" defer></script>
   </body>
 </html>
