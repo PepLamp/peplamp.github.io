@@ -1,5 +1,7 @@
 :root {
   color-scheme: dark;
+  --rect-w-px: 0px;
+  --rect2-w-px: 0px;
 }
 
 html,
@@ -16,13 +18,21 @@ body {
 .hero {
   position: fixed;
   inset: 0;
-  /* Layered backgrounds: overlay PNG on top of the photo */
-  background-image: url("./source/lonely_pep.png"), url("./source/background_rocks.jpg");
+  /* Layered backgrounds:
+     1) pep (top)
+     2) left rectangle (middle)
+     3) right rectangle (middle)
+     4) rocks (bottom)
+  */
+  background-image: url("./source/lonely_pep.png"),
+    linear-gradient(#d9d1bf, #d9d1bf),
+    linear-gradient(#d9d1bf, #d9d1bf),
+    url("./source/background_rocks.jpg");
   background-repeat: no-repeat;
-  background-size: cover, cover;
+  background-size: cover, var(--rect-w-px) 100vh, var(--rect2-w-px) 100vh, cover;
 
   /* Keep the 3/4-width vertical seam centered as the viewport changes */
-  background-position: 75% center, 75% center;
+  background-position: 75% center, left top, right top, 75% center;
   overflow: hidden;
   z-index: 0;
 }
