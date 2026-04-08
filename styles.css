@@ -2,6 +2,7 @@
   color-scheme: dark;
   --rect-w-px: 0px;
   --rect2-w-px: 0px;
+  --pep-slide-px: 0px;
 }
 
 html,
@@ -18,24 +19,58 @@ body {
 .hero {
   position: fixed;
   inset: 0;
-  /* Layered backgrounds:
-     1) pep (top)
-     2) left rectangle (middle)
-     3) right rectangle (middle)
-     4) rocks (bottom)
-  */
   background-image: url("./source/lonely_pep.png"),
-    linear-gradient(#d9d1bf, #d9d1bf),
-    linear-gradient(#d9d1bf, #d9d1bf),
-    url("./source/background_rocks.jpg");
+  linear-gradient(#d9d1bf, #d9d1bf),
+  linear-gradient(#d9d1bf, #d9d1bf),
+  url("./source/background_rocks.jpg");
   background-repeat: no-repeat;
   background-size: cover, var(--rect-w-px) 100vh, var(--rect2-w-px) 100vh, cover;
-
-  /* Keep the 3/4-width vertical seam centered as the viewport changes */
   background-position: 75% center, left top, right top, 75% center;
   overflow: hidden;
   z-index: 0;
 }
+
+.pep-lamp {
+  position: absolute;
+  top: 10vw;
+  left: 0%;
+  width: min(80vw, 900px);
+  height: auto;
+  transform: translateX(calc(-105% + var(--pep-slide-px)));
+  z-index: 4;
+  pointer-events: none;
+  display: block;
+}
+
+.about-label {
+  position: absolute;
+  top: 15vh;
+  left: 5vw;
+  width: min(40vw, 280px);
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  display: block;
+  fill: #d9d1bf;
+}
+
+.intro-text {
+  position: absolute;
+  top: 25vh;
+  left: 5vw;
+  width: 45vw;
+  max-width: 45vw;
+  color: #d9d1bf;
+  font-family: "Italiana", serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  text-align: left;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  z-index: 2;
+}
+
+
 
 .scroll-tint {
   position: fixed;
@@ -46,4 +81,3 @@ body {
   pointer-events: none;
   z-index: 10;
 }
-

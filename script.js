@@ -1,14 +1,14 @@
 (() => {
   const root = document.documentElement;
   let ticking = false;
-  const bgPosX = 0.75; // matches CSS background-position: 75% center
+  const bgPosX = 0.75;
   const bgPosY = 0.5;
   const initialEdgeX = () => window.innerWidth * 0.67;
   const initialEdgeX2 = () => window.innerWidth * 0.80;
 
-  let imgNatural = null; // { w, h }
-  let edgeU = null; // normalized x in image coords [0..1]
-  let edgeU2 = null; // normalized x in image coords [0..1]
+  let imgNatural = null;
+  let edgeU = null;
+  let edgeU2 = null;
 
   const coverMetrics = (vw, vh, iw, ih) => {
     const scale = Math.max(vw / iw, vh / ih);
@@ -59,7 +59,10 @@
     ensureEdgeU();
     const baseEdgeX = imageUToViewportX(edgeU);
     const clampedEdgeX = Math.min(window.innerWidth, Math.max(0, baseEdgeX));
-    root.style.setProperty("--rect-w-px", `${clampedEdgeX * (1 - t)}px`);
+    const slidePx = clampedEdgeX * (1 - t);
+
+    root.style.setProperty("--rect-w-px", `${slidePx}px`);
+    root.style.setProperty("--pep-slide-px", `${slidePx}px`);
 
     const baseEdgeX2 = imageUToViewportX(edgeU2);
     const clampedEdgeX2 = Math.min(window.innerWidth, Math.max(0, baseEdgeX2));
@@ -80,7 +83,6 @@
   img.decoding = "async";
   img.onload = () => {
     imgNatural = { w: img.naturalWidth || 1, h: img.naturalHeight || 1 };
-    // Recompute edgeU using the real image size so the edge locks to the photo.
     edgeU = null;
     edgeU2 = null;
     update();
@@ -89,4 +91,3 @@
 
   update();
 })();
-
