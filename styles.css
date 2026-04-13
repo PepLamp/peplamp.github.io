@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Duke Charming DEMO";
+  src: url("./source/Duke Charming DEMO.otf") format("opentype");
+}
+
 :root {
   color-scheme: dark;
   --rect-w-px: 0px;
@@ -47,12 +52,16 @@ body {
   top: 15vh;
   left: 5vw;
   width: min(40vw, 280px);
-  height: auto;
+  color: #d9d1bf;
+  font-family: "Duke Charming DEMO", serif;
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1;
   z-index: 3;
   pointer-events: none;
   display: block;
-  fill: #d9d1bf;
 }
+
+
 
 .intro-text {
   position: absolute;
@@ -70,7 +79,43 @@ body {
   z-index: 2;
 }
 
+.portfolio-link {
+  position: absolute;
+  left: 5vw;
+  top: calc(0vh + 13.5em);
+  color: #d9d1bf;
+  font-family: "Duke Charming DEMO", serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  line-height: 1;
+  text-decoration: none;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.2s ease, letter-spacing 0.2s ease;
+  z-index: 2;
+}
 
+.portfolio-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.18em;
+  width: 100%;
+  height: 2px;
+  background: #d9d1bf;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-link:hover,
+.portfolio-link:focus-visible {
+  transform: scale(1.12);
+}
+
+.portfolio-link:hover::after,
+.portfolio-link:focus-visible::after {
+  transform: scaleX(1);
+}
 
 .scroll-tint {
   position: fixed;
